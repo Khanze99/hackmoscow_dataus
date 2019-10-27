@@ -26,6 +26,9 @@ SECRET_KEY = 'gi1t64jn_xfv77$3&9chhvvkso&&7e=$tlfio=z@*^-h1!fwjk'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+APP_ID = "qL953SQsuV0H6a0CzNXp"
+APP_CODE = "y_hzRiZHQVrkBs1ejhE3Aw"
+HERE_API_URL = "https://image.maps.api.here.com/mia/1.6/mapview"
 
 
 # Application definition
@@ -124,3 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

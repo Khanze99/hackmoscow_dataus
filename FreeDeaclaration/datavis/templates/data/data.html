@@ -1,11 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>FreeDeclaration</title>
-    <h1>free declaration</h1>
-</head>
-<body>
+{% load static %}
+<html>
+  <head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+  type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"
+ type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+  </head>
+  <body>
+  <div style="width: 640px; height: 480px" id="mapContainer"></div>
 
-</body>
+  <div id="lat">{{ obj.lat }}</div>
+  <div id="lon">{{ obj.lon }}</div>
+
+  <script>
+    const url = 'http://127.0.0.1:8000/api/list/'
+    const response = fetch(url)
+    const result = response.json();
+
+    console.log(JSON.stringify(result));
+
+    function addMarkersToMap(map) {
+       var AltayMarker = new H.map.Marker({lat:lat , lng: lon});
+       map.addObject(AltayMarker);}
+
+    var platform = new H.service.Platform({
+        'apikey': 'QLfbKK42WjNTlJm--s_6ZnFwYgX9iZSLW14-woQlSMQ'
+    });
+
+    var maptypes = platform.createDefaultLayers();
+
+    var lon = +document.getElementById("lon").innerText
+    var lat = +document.getElementById("lat").innerText
+
+    console.log(lon)
+    console.log(lat)
+    var map = new H.Map(
+    document.getElementById('mapContainer'),
+    maptypes.vector.normal.map,
+    {
+      zoom: 4,
+      center: { lng: lon, lat: lat },
+      pixelRatio: window.devicePixelRatio || 1
+    });
+    var mapEvents = new H.mapevents.MapEvents(map);
+    map.addEventListener('tap', function(evt) {
+    console.log(evt.type, evt.currentPointer.type);});
+
+    var behavior = new H.mapevents.Behavior(mapEvents);
+    var ui = H.ui.UI.createDefault(map, maptypes);
+
+
+// Now use the map as required...
+    window.onload = function () {
+    addMarkersToMap(map);
+}
+
+  </script>
+  </body>
 </html>

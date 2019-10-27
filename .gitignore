@@ -1,3 +1,4 @@
 **/env_bin/**
 **/__pycache__/**
 **/*.pyc
+**static**
