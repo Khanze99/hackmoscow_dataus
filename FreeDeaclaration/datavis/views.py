@@ -14,6 +14,9 @@ import json
 # def get_image(request):
 #
 
+def get_pl_map(request):
+    return render(request, 'data/index.html', {})
+
 
 def get_map(request):
     obj = Region.objects.get(id=11)
