@@ -2,6 +2,10 @@ from django.shortcuts import render
 from .models import Region
 
 
+def get_budget_official(request):
+    return render(request, 'data/official_budget.html', {})
+
+
 def get_detail_stats(request):
     return render(request, 'data/integral_stat.html', {})
 
