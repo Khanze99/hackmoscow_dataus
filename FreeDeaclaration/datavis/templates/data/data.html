@@ -20,15 +20,19 @@
   <div id="lon">{{ obj.lon }}</div>
 
   <script>
-    const url = 'http://127.0.0.1:8000/api/list/'
-    const response = fetch(url)
-    const result = response.json();
 
-    console.log(JSON.stringify(result));
 
     function addMarkersToMap(map) {
-       var AltayMarker = new H.map.Marker({lat:lat , lng: lon});
-       map.addObject(AltayMarker);}
+    fetch('http://127.0.0.1:8000/api/list/')
+      .then(response => response.json())
+      .then(list => {
+          const regions = list.map(region => region.lat);
+          console.log(regions)
+
+          list.forEach(region => {var AltayMarker = new H.map.Marker({lat: region.lat , lng: region.lon});
+       map.addObject(AltayMarker);})
+      })
+       }
 
     var platform = new H.service.Platform({
         'apikey': 'QLfbKK42WjNTlJm--s_6ZnFwYgX9iZSLW14-woQlSMQ'
@@ -39,8 +43,7 @@
     var lon = +document.getElementById("lon").innerText
     var lat = +document.getElementById("lat").innerText
 
-    console.log(lon)
-    console.log(lat)
+
     var map = new H.Map(
     document.getElementById('mapContainer'),
     maptypes.vector.normal.map,
