@@ -2,9 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.get_map, name='image'),
-    path('api/', views.API.as_view(), name='api'),
-    path('api/obj/<int:pk>/', views.RegionAPIView.as_view(), name='obj'),
-    path('api/list/', views.RegionList.as_view(), name='list'),
-    path('analyse/', views.get_pl_map, name='analyse')
+    path('', views.get_base, name='base'),
+    path('dashboard/', views.get_map, name='interactive'),
+    path('analyse/', views.get_pl_map, name='analyse'),
+    path('statistics/', views.get_detail_stats, name='statistics')
 ]

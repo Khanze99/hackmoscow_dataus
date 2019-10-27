@@ -1,21 +1,11 @@
-{% load static %}
-<html>
-  <head>
-  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-  <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
-  type="text/javascript" charset="utf-8"></script>
-  <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
-  type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"
- type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-  </head>
-  <body>
-  <div style="width: 640px; height: 480px" id="mapContainer"></div>
+{% extends 'data/base.html' %}
 
+{% load static %}
+
+  {% block content %}
+  <div style="width: 1000px; height: 480px; padding-left: 30px;" id="mapContainer" align="center"></div>
+
+  <h1>Center</h1>
   <div id="lat">{{ obj.lat }}</div>
   <div id="lon">{{ obj.lon }}</div>
 
@@ -64,7 +54,5 @@
     window.onload = function () {
     addMarkersToMap(map);
 }
-
   </script>
-  </body>
-</html>
+{% endblock content%}
